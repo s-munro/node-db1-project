@@ -26,4 +26,13 @@ module.exports = {
         return db("accounts").where("id", id);
       });
   },
+
+  deleteAcconut(id) {
+    return db("accounts")
+      .where({ id: id })
+      .del()
+      .then(() => {
+        return db("accounts");
+      });
+  },
 };

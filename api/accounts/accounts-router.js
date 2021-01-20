@@ -58,4 +58,18 @@ router.put("/:id", (req, res) => {
   // res.status(200).json(changes);
 });
 
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+  if (!id) {
+    res.status(400).json({ message: "needs id" });
+  }
+  Account.deleteAcconut(id)
+    .then((accounts) => {
+      res.status(200).json(accounts);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 module.exports = router;
