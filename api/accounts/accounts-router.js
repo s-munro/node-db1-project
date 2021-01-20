@@ -26,4 +26,18 @@ router.get("/:id", (req, res) => {
     });
 });
 
+router.post("/", (req, res) => {
+  const { name, budget } = req.body;
+  if (!name || !budget) {
+    res.status(400).json({ message: "add the data, dummy" });
+  }
+  Account.createAccount(name, budget)
+    .then((account) => {
+      res.status(200).json(account);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 module.exports = router;

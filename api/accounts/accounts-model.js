@@ -9,4 +9,12 @@ module.exports = {
   getById(id) {
     return db("accounts").where("id", id);
   },
+
+  createAccount(username, userbudget) {
+    return db("accounts")
+      .insert({ name: username, budget: userbudget })
+      .then(([id]) => {
+        return db("accounts").where("id", id);
+      });
+  },
 };
