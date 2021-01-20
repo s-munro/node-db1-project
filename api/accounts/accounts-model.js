@@ -5,4 +5,8 @@ module.exports = {
     // code example
     return db("accounts");
   },
+
+  getById(id) {
+    return db("accounts").where("id", id);
+  },
 };
